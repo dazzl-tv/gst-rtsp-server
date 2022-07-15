@@ -187,6 +187,7 @@ struct _GstRTSPClientSink {
   GTlsInteraction  *tls_interaction;
   gint              ntp_time_source;
   gchar            *user_agent;
+  gchar            *stream_name;
 
   /* state */
   GstRTSPState       state;

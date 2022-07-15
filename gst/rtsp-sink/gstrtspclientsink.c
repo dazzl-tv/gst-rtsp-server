@@ -304,6 +304,7 @@ gst_rtsp_client_sink_ntp_time_source_get_type (void)
 #define DEFAULT_NTP_TIME_SOURCE  NTP_TIME_SOURCE_NTP
 #define DEFAULT_USER_AGENT       "GStreamer/" PACKAGE_VERSION
 #define DEFAULT_PROFILES         GST_RTSP_PROFILE_AVP
+#define DEFAULT_STREAM_NAME      "Session streamed with GStreamer"
 #define DEFAULT_RTX_TIME_MS      500
 
 enum
@@ -334,6 +335,7 @@ enum
   PROP_TLS_INTERACTION,
   PROP_NTP_TIME_SOURCE,
   PROP_USER_AGENT,
+  PROP_STREAM_NAME,
   PROP_PROFILES
 };
 
@@ -713,6 +715,17 @@ gst_rtsp_client_sink_class_init (GstRTSPClientSinkClass * klass)
           G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
   /**
+   * GstRTSPClientSink::stream-name:
+   *
+   * The string to set a name to a stream
+   *
+   */
+  g_object_class_install_property (gobject_class, PROP_STREAM_NAME,
+      g_param_spec_string ("stream-name", "Stream Name",
+          "Name for the stream as advertised to the server",
+          DEFAULT_STREAM_NAME, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
+  /**
    * GstRTSPClientSink::user-agent:
    *
    * The string to set in the User-Agent header.
@@ -851,7 +864,7 @@ gst_rtsp_client_sink_init (GstRTSPClientSink * sink)
   sink->tls_interaction = DEFAULT_TLS_INTERACTION;
   sink->ntp_time_source = DEFAULT_NTP_TIME_SOURCE;
   sink->user_agent = g_strdup (DEFAULT_USER_AGENT);
-
+  sink->stream_name = g_strdup (DEFAULT_STREAM_NAME);
   sink->profiles = DEFAULT_PROFILES;
 
   /* protects the streaming thread in interleaved mode or the polling
@@ -904,6 +917,7 @@ gst_rtsp_client_sink_finalize (GObject * object)
   g_free (rtsp_client_sink->user_pw);
   g_free (rtsp_client_sink->multi_iface);
   g_free (rtsp_client_sink->user_agent);
+  g_free (rtsp_client_sink->stream_name);
 
   if (rtsp_client_sink->uri_sdp) {
     gst_sdp_message_free (rtsp_client_sink->uri_sdp);
@@ -1676,6 +1690,10 @@ gst_rtsp_client_sink_set_property (GObject * object, guint prop_id,
       g_free (rtsp_client_sink->user_agent);
       rtsp_client_sink->user_agent = g_value_dup_string (value);
       break;
+    case PROP_STREAM_NAME:
+      g_free (rtsp_client_sink->stream_name);
+      rtsp_client_sink->stream_name = g_value_dup_string (value);
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -1795,6 +1813,9 @@ gst_rtsp_client_sink_get_property (GObject * object, guint prop_id,
       break;
     case PROP_USER_AGENT:
       g_value_set_string (value, rtsp_client_sink->user_agent);
+      break;
+    case PROP_STREAM_NAME:
+      g_value_set_string (value, rtsp_client_sink->stream_name);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -4399,7 +4420,7 @@ gst_rtsp_client_sink_record (GstRTSPClientSink * sink, gboolean async)
 
   gst_sdp_message_set_origin (sdp, "-", sess_id, "1", "IN", proto, client_ip);
 
-  gst_sdp_message_set_session_name (sdp, "Session streamed with GStreamer");
+  gst_sdp_message_set_session_name (sdp, sink->stream_name);
   gst_sdp_message_set_information (sdp, "rtspclientsink");
   gst_sdp_message_add_time (sdp, "0", "0", NULL);
   gst_sdp_message_add_attribute (sdp, "tool", "GStreamer");
