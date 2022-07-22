@@ -6,6 +6,7 @@ LABEL description="Build the rtspclientsink gstreamer's module"
 WORKDIR /app
 
 COPY ./ /app/gst-rtsp-server/
+COPY ./.packagecloud /root/
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -22,6 +23,7 @@ RUN apt-get update \
     wget \
     tree \
     file \
+    ruby-full \
     ruby \
     ruby2.7-dev \
     python3 \
@@ -47,6 +49,7 @@ RUN apt-get update \
   && /app/gst-rtsp-server/build_gst_library.sh \
   && cd /app/gst-rtsp-server/ \
   && /app/gst-rtsp-server/mk_debian_package.sh "1.16.2" \
+  && id \
   && /app/gst-rtsp-server/push-to-repository.sh
 
 
