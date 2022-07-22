@@ -41,21 +41,8 @@ RUN apt-get update \
     libatk-bridge2.0-0 \
     libatspi2.0-0 \
     libcups2-dev \
-  && pwd \
-  && wget --no-check-certificate https://github.com/mesonbuild/meson/releases/download/0.63.0/meson-0.63.0.tar.gz \
-  && tar zxvf meson-0.63.0.tar.gz \
-  && ls -al \
-  && cd /app/gst-rtsp-server \
-  && pwd \
-  && ls -al \
-  && python3 /app/meson-0.63.0/meson.py build/ \
-  && cd build/ \
-  && pwd \
-  && ninja \
-  && ls -al \
-  && tree \
-  && ls -al /app/gst-rtsp-server/build/gst/rtsp-sink/libgstrtspclientsink.so \
-  && file /app/gst-rtsp-server/build/gst/rtsp-sink/libgstrtspclientsink.so \
-  && export GST_PLUGIN_PATH=/app/gst-rtsp-server/build/gst/rtsp-sink/ \
-  && gst-inspect-1.0 rtspclientsink
+  && cd /app/ \
+  && /app/gst-rtsp-server/build_gst_library.sh \
+  && cd /app/gst-rtsp-server/ \
+  && /app/gst-rtsp-server/mk_debian_package.sh "1.16.2"
 
