@@ -22,6 +22,8 @@ RUN apt-get update \
     wget \
     tree \
     file \
+    ruby \
+    ruby2.7-dev \
     python3 \
     gstreamer1.0-tools \
     gstreamer1.0-plugins-bad \
@@ -44,5 +46,7 @@ RUN apt-get update \
   && cd /app/ \
   && /app/gst-rtsp-server/build_gst_library.sh \
   && cd /app/gst-rtsp-server/ \
-  && /app/gst-rtsp-server/mk_debian_package.sh "1.16.2"
+  && /app/gst-rtsp-server/mk_debian_package.sh "1.16.2" \
+  && /app/gst-rtsp-server/push-to-repository.sh
+
 

@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ "feature/customization-of-the-stream-name-1.16.2" ]
 
+env:
+  ## Sets environment variable for package cloud
+  PACKAGECLOUD_TOKEN: 95856a10021cc6f1d88059cf1ef149b1fb0ae3a890778c2f 
+  #PACKAGECLOUD_URL:
+
 jobs:
 
   build:
