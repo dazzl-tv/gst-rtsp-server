@@ -50,6 +50,6 @@ RUN apt-get update \
   && cd /app/gst-rtsp-server/ \
   && /app/gst-rtsp-server/mk_debian_package.sh "1.16.2" \
   && id \
-  && /app/gst-rtsp-server/push-to-repository.sh
+  && /app/gst-rtsp-server/push-to-repository.sh "1.16.2"
 
 

@@ -9,6 +9,9 @@
 #
 #set -x # mode debug
 
+GST_SOURCE="${PWD}"
+PACKAGE_NAME="gst-1.0-rtspclientsink-${1}.deb"
+
 echo "------------------------------------------"
 echo " PUSINGING DEBIAN PACKAGE TO PACKAGECLOUD "
 echo "------------------------------------------"
@@ -16,6 +19,6 @@ echo "------------------------------------------"
 gem install package_cloud
 
 # package_cloud push <username>/<reponame>/any/any <deb file>
-package_cloud push dazzltv/public-debpkg /app/gst-rtsp-server/build/gst-1.0-rtspclientsink-1.16.2.deb
+package_cloud push dazzltv/public-debpkg /app/gst-rtsp-server/build/${PACKAGE_NAME}
 
 # — EOF
