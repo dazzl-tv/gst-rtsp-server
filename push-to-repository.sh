@@ -20,6 +20,6 @@ gem install package_cloud
 
 # package_cloud push <username>/<reponame>/any/any <deb file>
 # user/repo[/distro/version
-package_cloud push dazzltv/public-debpkg/Ubuntu/1.16.2 /app/gst-rtsp-server/build/${PACKAGE_NAME}
+package_cloud push dazzltv/public-debpkg/Ubuntu /app/gst-rtsp-server/build/${PACKAGE_NAME}
 
 # — EOF
