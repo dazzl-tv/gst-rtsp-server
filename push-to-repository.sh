@@ -19,6 +19,7 @@ echo "------------------------------------------"
 gem install package_cloud
 
 # package_cloud push <username>/<reponame>/any/any <deb file>
-package_cloud push dazzltv/public-debpkg /app/gst-rtsp-server/build/${PACKAGE_NAME}
+# user/repo[/distro/version
+package_cloud push dazzltv/public-debpkg/Ubuntu/1.16.2 /app/gst-rtsp-server/build/${PACKAGE_NAME}
 
 # — EOF
