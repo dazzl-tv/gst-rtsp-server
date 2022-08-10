@@ -10,11 +10,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
+    #env:
       ## Sets environment variable for package cloud
-      PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }} 
+      #PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }} 
       #PACKAGECLOUD_URL:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag gst-rtspclientsink:$(date +%s)
+    - env:
+      PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }}
