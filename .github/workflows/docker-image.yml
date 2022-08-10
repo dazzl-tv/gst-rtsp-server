@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ## Sets environment variable for package cloud
-      PACKAGECLOUD_TOKEN: 95856a10021cc6f1d88059cf1ef149b1fb0ae3a890778c2f 
+      PACKAGECLOUD_TOKEN: ${{ secrets.PACKAGECLOUD_TOKEN }} 
       #PACKAGECLOUD_URL:
     steps:
     - uses: actions/checkout@v3
