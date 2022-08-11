@@ -14,7 +14,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN echo PACKAGECLOUD_TOKEN=$PACKAGECLOUD_TOKEN
-RUN echo secrets_PACKAGECLOUD_TOKEN =${{ secrets.PACKAGECLOUD_TOKEN }}
+RUN env
+#RUN echo secrets_PACKAGECLOUD_TOKEN =${{ secrets.PACKAGECLOUD_TOKEN }}
 
 RUN apt-get update \
   && apt-get -y install --no-install-recommends \
