@@ -13,8 +13,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --mount=type=secret,id=PACKAGECLOUD_TOKEN --tag gst-1.0-rtspclientsink-1.16.2:$(date +%s)
-      with:
-        context: .
-        secrets: |
-        "PACKAGECLOUD_TOKEN=${{ secrets.PACKAGECLOUD_TOKEN }}"
+      run: |
+        docker build . \
+               --file Dockerfile \
+               --build-arg "PACKAGECLOUD_TOKEN=${{ secrets.PACKAGECLOUD_TOKEN }}" \ 
+               --tag gst-1.0-rtspclientsink-1.16.2:$(date +%s)
