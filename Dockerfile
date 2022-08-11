@@ -13,6 +13,8 @@ ENV PACKAGECLOUD_TOKEN=$PACKAGECLOUD_TOKEN
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+RUN echo PACKAGECLOUD_TOKEN=$PACKAGECLOUD_TOKEN
+
 RUN apt-get update \
   && apt-get -y install --no-install-recommends \
     pkg-config \
