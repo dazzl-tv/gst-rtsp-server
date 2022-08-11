@@ -6,7 +6,7 @@ LABEL description="Build the rtspclientsink gstreamer's module"
 WORKDIR /app
 
 COPY ./ /app/gst-rtsp-server/
-#COPY ./.packagecloud /root/
+COPY ./.packagecloud /root/
 
 ENV DEBIAN_FRONTEND=noninteractive
 #ENV PACKAGECLOUD_TOKEN=$PACKAGECLOUD_TOKEN
