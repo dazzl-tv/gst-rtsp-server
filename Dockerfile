@@ -9,12 +9,12 @@ COPY ./ /app/gst-rtsp-server/
 #COPY ./.packagecloud /root/
 
 ENV DEBIAN_FRONTEND=noninteractive
-#ENV PACKAGECLOUD_TOKEN=$PACKAGECLOUD_TOKEN
+ENV PACKAGECLOUD_TOKEN=$PACKAGECLOUD_TOKEN
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN echo PACKAGECLOUD_TOKEN=$PACKAGECLOUD_TOKEN
-RUN env
+#RUN env
 #RUN echo secrets_PACKAGECLOUD_TOKEN =${{ secrets.PACKAGECLOUD_TOKEN }}
 
 RUN apt-get update \
