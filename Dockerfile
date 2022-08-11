@@ -17,8 +17,8 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 #RUN env
 #RUN echo secrets_PACKAGECLOUD_TOKEN =${{ secrets.PACKAGECLOUD_TOKEN }}
 
-RUN --mount=type=secret,id=PACKAGECLOUD_TOKEN \
-  cat /run/secrets/PACKAGECLOUD_TOKEN
+#RUN --mount=type=secret,id=PACKAGECLOUD_TOKEN \
+#  cat /run/secrets/PACKAGECLOUD_TOKEN
 
 RUN apt-get update \
   && apt-get -y install --no-install-recommends \
