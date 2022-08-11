@@ -11,13 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - 
+      - uses: actions/checkout@v3
         name: Build the Docker image for cross-compiling the gst module
-        uses: docker/build-push-action@v3
-        #docker build . --file Dockerfile --secrets --build-arg "PACKAGECLOUD_TOKEN=${{ secrets.PACKAGECLOUD_TOKEN }}" --tag gst-1.0-rtspclientsink-1.16.2:$(date +%s)
-        with:
-          context: .
-          push: false
-          tags: gst-1.0-rtspclientsink-1.16.2:$(date +%s)
-          secrets:
-            "PACKAGECLOUD_TOKEN=${{ secrets.PACKAGECLOUD_TOKEN }}"
+        run: docker build . --file Dockerfile --secrets --build-arg "PACKAGECLOUD_TOKEN=${{ secrets.PACKAGECLOUD_TOKEN }}" --tag gst-1.0-rtspclientsink-1.16.2:$(date +%s)
+
