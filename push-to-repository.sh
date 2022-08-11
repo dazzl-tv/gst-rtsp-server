@@ -28,6 +28,6 @@ gem install package_cloud
 #	2. LinuxMint
 #	3. Raspbian
 #	4. elementary OS 
-package_cloud push "dazzltv/public-debpkg/0/${1}" /app/gst-rtsp-server/build/${PACKAGE_NAME}
+package_cloud push "dazzltv/public-debpkg/any/any" /app/gst-rtsp-server/build/${PACKAGE_NAME}
 
 # — EOF
