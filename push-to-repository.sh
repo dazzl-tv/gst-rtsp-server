@@ -27,7 +27,7 @@ gem install package_cloud
 #	1. Debian
 #	2. LinuxMint
 #	3. Raspbian
-#	4. elementary OS 
-package_cloud push "dazzltv/public-debpkg/any/any" /app/gst-rtsp-server/build/${PACKAGE_NAME}
+#	4. elementary OS
+package_cloud push "dazzltv/public-debpkg/ubuntu/20.04" /app/gst-rtsp-server/build/${PACKAGE_NAME}
 
 # — EOF
