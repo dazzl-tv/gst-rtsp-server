@@ -47,27 +47,19 @@ EOF
 
 # — Creation des heredocs pour les hooks (template vides pour un usage ultérieur 
 cat <<- EOF > ${PACKAGE_DELIVERY_DEBIAN}/preinst
-       #
-       # preinst
-       #
+echo " -> preinst callback "
 EOF
 
 cat <<- EOF > ${PACKAGE_DELIVERY_DEBIAN}/postinst
-       #
-       # postinst
-       #
+echo " -> postinst callback"
 EOF
 
 cat <<- EOF > ${PACKAGE_DELIVERY_DEBIAN}/prerm
-       #
-       # prerm
-       #
+echo " -> prerm callback"
 EOF
 
 cat <<- EOF > ${PACKAGE_DELIVERY_DEBIAN}/postrm
-       #
-       # postrm
-       #
+echo " -> postrm callback"
 EOF
 chmod 755 ${PACKAGE_DELIVERY_DEBIAN}/post* 
 chmod 755 ${PACKAGE_DELIVERY_DEBIAN}/pre* 
